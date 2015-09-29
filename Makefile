@@ -3,13 +3,15 @@ EXAMPLE=	example.o
 PROBLEM=	problem.o
 SEMAPHORE=	semaphore.o
 MUTEX=		mutex.o
-OBJS =		$(EXAMPLE) $(PROBLEM) $(SEMAPHORE) $(MUTEX)
+SOLUTION=	solution.o
+
+OBJS =		$(EXAMPLE) $(PROBLEM) $(SEMAPHORE) $(MUTEX) $(SOLUTION)
 
 LIBS=		-pthread
 
 CCFLAGS= -g
 
-all:		example problem semaphore mutex
+all:		example problem semaphore mutex solution
 
 example:	$(EXAMPLE)
 		$(CXX) -o example $(EXAMPLE) $(LIBS)
@@ -23,11 +25,14 @@ semaphore:	$(SEMAPHORE)
 mutex:	$(MUTEX)
 		$(CXX) -o mutex $(MUTEX) $(LIBS)
 
+solution:	$(SOLUTION)
+			$(CXX) -o solution $(SOLUTION) $(LIBS)
+
 clean:
 		rm -f $(OBJS) $(OBJS:.o=.d)
 
 realclean:
-		rm -f $(OBJS) $(OBJS:.o=.d) example problem semaphore mutex
+		rm -f $(OBJS) $(OBJS:.o=.d) example problem semaphore mutex solution
 
 
 # These lines ensure that dependencies are handled automatically.
